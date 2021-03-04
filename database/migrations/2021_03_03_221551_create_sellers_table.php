@@ -15,7 +15,11 @@ class CreateSellersTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->string('nome', 255);
+            $table->string('telefone', 255);
+            $table->string('email', 255);
         });
     }
 
