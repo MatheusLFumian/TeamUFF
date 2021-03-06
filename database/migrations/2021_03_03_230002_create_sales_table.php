@@ -15,16 +15,14 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->integer('seller_id')->unsigned();
-            $table->foreign('seller_id')->references('id')->on('sellers');
-            $table->integer('part_id')->unsigned();
-            $table->foreign('part_id')->references('id')->on('parts')->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('seller_id')->constrained('sellers');
+            $table->foreignId('part_id')->constrained('parts');
             $table->float('valor_venda');
             $table->float('valor_frete');
             $table->date('data_saida');
             $table->date('data_chegada');
+            $table->timestamps();
         });
     }
 

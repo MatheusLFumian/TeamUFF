@@ -15,9 +15,9 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->integer('part_id')->unsigned();
-            $table->foreign('part_id')->references('id')->on('parts')->onDelete('cascade');
+            $table->foreignId('part_id')->constrained('parts');
             $table->string('classificassao');
+            $table->timestamps();
         });
     }
 

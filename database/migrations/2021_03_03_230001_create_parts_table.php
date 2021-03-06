@@ -15,10 +15,8 @@ class CreatePartsTable extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->integer('seller_id')->unsigned();
-            $table->foreign('seller_id')->references('id')->on('seller');
+            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('seller_id')->constrained('sellers');
             $table->string('descricao');
             $table->string('tipo');
             $table->float('peso');
