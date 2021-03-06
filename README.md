@@ -1,4 +1,4 @@
-<p align="center">Certificaço</p>
+<p align="center">Classificaço API</p>
 
 ## Sobre a API
 
