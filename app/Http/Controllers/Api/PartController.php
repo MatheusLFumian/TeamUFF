@@ -9,6 +9,7 @@ use App\Models\Part;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PartController extends Controller
 {
@@ -20,7 +21,6 @@ class PartController extends Controller
     public function index()
     {
         $parts = Part::all();
-        $teste = 'teste';
 
         return response()->json([
             'success' => true,
@@ -55,6 +55,7 @@ class PartController extends Controller
         $seller = new Seller();
         $image = new Image();
 
+
         $company->nome = $request->empresa;
         $company->cnpj = $request->cnpj;
         $company->cidade = $request->cidade;
@@ -70,12 +71,16 @@ class PartController extends Controller
 
         $image->imagem = $request->imagem;
 
-        if (auth()->user()->company()->save($company) and auth()->user()->seller()->save($seller) and auth()->user()->part()->save($part) and auth()->user()->image()->save($image)) {
-                return response()->json([
-                    'success'=>true,
-                    'data'=> $part
-                ]);
-        }else{
+        if (Auth::user()) {
+            $company()->save();
+            $seller()->save();
+            $part()->save();
+            $image()->save();
+            return response()->json([
+                'success' => true,
+                'data' => $part
+            ]);
+        } else {
             return response()->json([
                 'success' => false,
                 'message' => 'Faild to add a part...'

@@ -26,6 +26,6 @@ Route::middleware('guest:api')->group(function(){
     Route::resource('/parts', PartController::class);
 } );
 
-Route::middleware('auth:api')->group(function(){
+Route::middleware('guest:api')->group(function(){
     Route::post('/parts/add', [PartController::class, 'store']);
 } );
