@@ -12,7 +12,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    $fillable = [
-        'imagem'
-    ]
+    protected $fillable = [
+        'imagem',
+    ];
 }

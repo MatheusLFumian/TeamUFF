@@ -12,7 +12,7 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
         'nome',
         'cnpj',
         'cidade',
